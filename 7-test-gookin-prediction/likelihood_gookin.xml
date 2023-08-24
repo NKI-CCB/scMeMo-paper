@@ -1,0 +1,19 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="Gookin_random_subset"
+    model_file="model_setparams.xml"
+    num_cells="128"
+    max_cells="500"
+    entry_time="43200"
+    trailing_simulation_time="0"
+    data_file="data/gookin2017_random_subset.nc"
+  >
+    <cell_variability entry_time="entry_time"                   type="additive" distribution="uniform" range="43200"/>
+    <cell_variability parameter="mitogenic_signal_accumulation" type="multiplicative_log2" distribution="normal" range="mitogenic_signal_accumulation_variability"/>
+    <cell_variability parameter="DNA_licensing"                 type="multiplicative_log2" distribution="normal" range="DNA_licensing_variability"/>
+    <cell_variability parameter="DNA_replication"               type="multiplicative_log2" distribution="normal" range="DNA_replication_variability"/>
+    <cell_variability parameter="G2_delay"                      type="multiplicative_log2" distribution="normal" range="G2_delay_variability"/>
+    <cell_variability parameter="DNA_damage_rate"               type="multiplicative_log2" distribution="normal" range="DNA_damage_rate_variability"/>
+    <data species_name="CDK2_sensor_cytoplasmic/CDK2_sensor_nuclear"  data_name="CDK2_sensor_log" use_log_ratio="true" stdev="stdev" scale="0.1" stdev_multiplication_factor="0.6" missing_simulation_time_stdev="missing_time_stdev"/>
+  </experiment>
+</bcm_likelihood>

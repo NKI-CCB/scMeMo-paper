@@ -1,0 +1,16 @@
+<bcm_likelihood type="cell_population">
+  <experiment
+    name="GavetPines_HeLa"
+    model_file="model.xml"
+    num_cells="32"
+    max_cells="32"
+    entry_time="0.0"
+    trailing_simulation_time="0"
+    data_file="data/GavetPines2010.nc"
+  >
+    <cell_variability parameter="FOXM1_synthesis"   type="multiplicative_log2" distribution="normal" range="FOXM1_synthesis_variability"/>
+    <cell_variability parameter="mitotic_entry"     type="multiplicative_log2" distribution="normal" range="mitotic_entry_variability"/>
+    <cell_variability parameter="spindle_assembly"  type="multiplicative_log2" distribution="normal" range="spindle_assembly_variability"/>
+    <data type="duration" period="NEBD_to_AnaphaseOnset" data_name="NEBD_to_AO_duration" stdev="stdev" simulation_time="86400"/>
+  </experiment>
+</bcm_likelihood>

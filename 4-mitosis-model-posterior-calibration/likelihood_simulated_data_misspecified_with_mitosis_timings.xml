@@ -1,0 +1,20 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="CDK1_sensor_sim"
+    model_file="model_misspecified.xml"
+    num_cells="32"
+    max_cells="32"
+    entry_time="0.0"
+    trailing_simulation_time="0"
+    data_file="data/CDK1_sensor_simulated_data_withtimings.nc"
+  >
+    <cell_variability parameter="FOXM1_synthesis"   type="multiplicative_log2" distribution="normal" range="FOXM1_synthesis_variability"/>
+    <cell_variability parameter="mitotic_entry"     type="multiplicative_log2" distribution="normal" range="mitotic_entry_variability"/>
+    <cell_variability parameter="spindle_assembly"  type="multiplicative_log2" distribution="normal" range="spindle_assembly_variability"/>
+    <data species_name="active_CDK1sensor" data_name="CDK1_sensor_sim" stdev="stdev" stdev_multiplication_factor="0.3655516"/>
+    <data type="duration" period="NEBD_to_AnaphaseOnset" data_name="NEBD_to_AO_duration_liu"      stdev="stdev" simulation_time="86400" stdev_multiplication_factor="990"/>
+    <data type="duration" period="NEBD_to_AnaphaseOnset" data_name="NEBD_to_AO_duration_lu"       stdev="stdev" simulation_time="86400" stdev_multiplication_factor="1207.623"/>
+    <data type="duration" period="NEBD_to_AnaphaseOnset" data_name="NEBD_to_AO_duration_meraldi"  stdev="stdev" simulation_time="86400" stdev_multiplication_factor="1305"/>
+    <data type="duration" period="NEBD_to_AnaphaseOnset" data_name="NEBD_to_AO_duration_zhou"     stdev="stdev" simulation_time="86400" stdev_multiplication_factor="481.7302"/>
+  </experiment>
+</bcm_likelihood>

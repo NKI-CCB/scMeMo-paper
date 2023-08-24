@@ -1,0 +1,1 @@
+$BCM3_ROOT/bin/bcminf -c config_autoblock.txt --output.folder=output_autoblock -j 4 -k 4

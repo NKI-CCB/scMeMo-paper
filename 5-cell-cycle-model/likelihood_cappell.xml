@@ -1,0 +1,23 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="Cappell_fig2"
+    model_file="model.xml"
+    num_cells="32"
+    max_cells="96"
+    entry_time="Cappell2018_entry_time"
+    trailing_simulation_time="5e3"
+    data_file="data/Cappell2018.nc"
+  >
+    <cell_variability parameter="mitogenic_signal_accumulation" type="multiplicative_log2" distribution="normal" range="mitogenic_signal_accumulation_variability"/>
+    <cell_variability parameter="DNA_licensing"                 type="multiplicative_log2" distribution="normal" range="DNA_licensing_variability"/>
+    <cell_variability parameter="DNA_replication"               type="multiplicative_log2" distribution="normal" range="DNA_replication_variability"/>
+    <data species_name="Geminin"                                          data_name="Geminin_protein_rep1"  use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.8146462" offset="offset_cappell_Geminin" scale="scale_cappell_Geminin"/>
+    <data species_name="Geminin"                                          data_name="Geminin_protein_rep2"  use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.8146462" offset="offset_cappell_Geminin" scale="scale_cappell_Geminin"/>
+    <data species_name="Emi1"                                             data_name="Emi1_protein_rep1"     use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.6869672" offset="offset_cappell_Emi1" scale="scale_cappell_Emi1"/>
+    <data species_name="Emi1"                                             data_name="Emi1_protein_rep2"     use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.6869672" offset="offset_cappell_Emi1" scale="scale_cappell_Emi1"/>
+    <data species_name="CyclinE+active_CyclinE_CDK2"                      data_name="CyclinE_protein_rep1"  use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.6301696" offset="offset_cappell_CyclinE" scale="scale_cappell_CyclinE"/>
+    <data species_name="CyclinE+active_CyclinE_CDK2"                      data_name="CyclinE_protein_rep2"  use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.6301696" offset="offset_cappell_CyclinE" scale="scale_cappell_CyclinE"/>
+    <data species_name="DNA+licensed_DNA+replicating_DNA+replicated_DNA"  data_name="edu_plus_one_rep1"     use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.8333687"/>
+    <data species_name="DNA+licensed_DNA+replicating_DNA+replicated_DNA"  data_name="edu_plus_one_rep2"     use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.8333687"/>
+  </experiment>
+</bcm_likelihood>

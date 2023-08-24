@@ -1,0 +1,19 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="Akopyan_fig3d"
+    model_file="model.xml"
+    num_cells="32"
+    max_cells="32"
+    divide_cells="false"
+    entry_time="0.0"
+    trailing_simulation_time="0.0"
+    data_file="data/Akopyan2014.nc"
+  >
+    <cell_variability parameter="mitogenic_signal_accumulation"         type="multiplicative_log2" distribution="normal" range="mitogenic_signal_accumulation_variability"/>
+    <cell_variability parameter="DNA_licensing"                         type="multiplicative_log2" distribution="normal" range="DNA_licensing_variability"/>
+    <cell_variability parameter="DNA_replication"                       type="multiplicative_log2" distribution="normal" range="DNA_replication_variability"/>
+    <cell_variability parameter="G2_delay"                              type="multiplicative_log2" distribution="normal" range="G2_delay_variability"/>
+    <data species_name="CyclinA+active_CyclinA_CDK2+active_CyclinA_CDK1"  data_name="cycA" use_population_average="true" include_only_cells_that_went_through_mitosis="true" synchronize="mitosis" stdev="stdev" offset="offset_akopyan_cycA" scale="scale_akopyan_cycA" stdev_multiplication_factor="0.2401511"/>
+    <data species_name="CyclinB+active_CyclinB_CDK1"                      data_name="cycB" use_population_average="true" include_only_cells_that_went_through_mitosis="true" synchronize="mitosis" stdev="stdev" offset="offset_akopyan_cycB" scale="scale_akopyan_cycB" stdev_multiplication_factor="0.06928823"/>
+  </experiment>
+</bcm_likelihood>

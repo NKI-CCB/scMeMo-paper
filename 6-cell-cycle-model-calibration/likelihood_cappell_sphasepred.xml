@@ -1,0 +1,16 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="Burgess_Fig2B"
+    model_file="model.xml"
+    num_cells="32"
+    max_cells="224"
+    entry_time="0"
+    trailing_simulation_time="0.0"
+    data_file="../6-cell-cycle-model-calibration/data/Burgess2012.nc"
+  >
+    <cell_variability parameter="mitogenic_signal_accumulation" type="multiplicative_log2" distribution="normal" range="mitogenic_signal_accumulation_variability"/>
+    <cell_variability parameter="DNA_licensing"                 type="multiplicative_log2" distribution="normal" range="DNA_licensing_variability"/>
+    <cell_variability parameter="DNA_replication"               type="multiplicative_log2" distribution="normal" range="DNA_replication_variability"/>
+    <data type="duration" period="Sphase" data_name="Sphase_duration" stdev="stdev" simulation_time="86400"/>
+  </experiment>
+</bcm_likelihood>

@@ -1,0 +1,1 @@
+$BCM3_ROOT/bin/bcminf -c config_globalcov.txt --output.folder=output_globalcov -j 4 -k 4

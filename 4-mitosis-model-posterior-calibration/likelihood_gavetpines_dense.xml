@@ -1,0 +1,18 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="GavetPines_HeLa"
+    model_file="../2-mitosis-model/model.xml"
+    num_cells="32"
+    max_cells="32"
+    entry_time="0.0"
+    trailing_simulation_time="1e4"
+    data_file="../2-mitosis-model/data/GavetPines2010.nc"
+  >
+    <cell_variability parameter="FOXM1_synthesis"   type="multiplicative_log2" distribution="normal" range="FOXM1_synthesis_variability"/>
+    <cell_variability parameter="mitotic_entry"     type="multiplicative_log2" distribution="normal" range="mitotic_entry_variability"/>
+    <cell_variability parameter="spindle_assembly"  type="multiplicative_log2" distribution="normal" range="spindle_assembly_variability"/>
+    <data species_name="active_CDK1sensor+CDK1sensor_dilution" use_population_average="true" synchronize="mitosis" data_name="CDK1_sensor_mean_entry" stdev="stdev" stdev_multiplication_factor="0.3476762"/>
+    <data species_name="active_CDK1sensor+CDK1sensor_dilution" use_population_average="true" synchronize="anaphase" data_name="CDK1_sensor_mean_exit" stdev="stdev" stdev_multiplication_factor="0.3476762"/>
+    <data species_name="active_CDK1sensor+CDK1sensor_dilution" data_name="CDK1_sensor" synchronize="mitosis" stdev="stdev" stdev_multiplication_factor="0.8610426"/>
+  </experiment>
+</bcm_likelihood>

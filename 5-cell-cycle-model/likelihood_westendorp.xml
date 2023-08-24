@@ -1,0 +1,19 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="westendorp_fig1a"
+    model_file="model.xml"
+    num_cells="32"
+    max_cells="128"
+    entry_time="Westendorp_entry_time"
+    trailing_simulation_time="0.0"
+    data_file="data/Westendorp2012.nc"
+  >
+    <cell_variability parameter="mitogenic_signal_accumulation" type="multiplicative_log2" distribution="normal" range="mitogenic_signal_accumulation_variability"/>
+    <cell_variability parameter="DNA_licensing"                 type="multiplicative_log2" distribution="normal" range="DNA_licensing_variability"/>
+    <cell_variability parameter="DNA_replication"               type="multiplicative_log2" distribution="normal" range="DNA_replication_variability"/>
+    <cell_variability parameter="G2_delay"                      type="multiplicative_log2" distribution="normal" range="G2_delay_variability"/>
+    <cell_variability parameter="DNA_damage_rate"               type="multiplicative_log2" distribution="normal" range="DNA_damage_rate_variability"/>
+    <data species_name="active_E2F1+inactive_E2F1"  data_name="E2F1" use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.646276" offset="offset_westendorp_E2F1" scale="scale_westendorp_E2F1"/>
+    <data species_name="active_E2F7"                data_name="E2F7" use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.584028" offset="offset_westendorp_E2F7" scale="scale_westendorp_E2F7"/>
+  </experiment>
+</bcm_likelihood>

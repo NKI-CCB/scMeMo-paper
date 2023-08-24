@@ -1,0 +1,17 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="Grant2018_Fig4C"
+    model_file="model.xml"
+    num_cells="32"
+    max_cells="224"
+    entry_time="0"
+    trailing_simulation_time="0.0"
+    data_file="../6-cell-cycle-model-calibration/data/Grant2018_15cells.nc"
+  >
+    <cell_variability parameter="mitogenic_signal_accumulation"         type="multiplicative_log2" distribution="normal" range="mitogenic_signal_accumulation_variability"/>
+    <cell_variability parameter="DNA_licensing"                         type="multiplicative_log2" distribution="normal" range="DNA_licensing_variability"/>
+    <cell_variability parameter="DNA_replication"                       type="multiplicative_log2" distribution="normal" range="DNA_replication_variability"/>
+    <cell_variability parameter="G2_delay"                              type="multiplicative_log2" distribution="normal" range="G2_delay_variability"/>
+    <data type="duration" period="Sphase" data_name="Sphase_duration_U2OS" stdev="stdev" simulation_time="86400"/>
+  </experiment>
+</bcm_likelihood>

@@ -1,0 +1,2 @@
+cd ..\2-mitosis-model
+%BCM3_ROOT%\bin\Release\bcminf --predict --predict.input=output_gavetpines/output.nc --prior=prior_gavetpines.xml --likelihood=likelihood_gavetpines.xml --output.folder=../2-mitosis-model-performance-comparison/perf_test

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variableset>
+ <variable name="mitogenic_signal_accumulation" distribution="uniform" lower="-5.782" upper="-1.778" logspace="true"/>
+ <variable name="DNA_licensing" distribution="uniform" lower="-4.937" upper="-1.778" logspace="true"/>
+ <variable name="DNA_replication" distribution="uniform" lower="-4.937" upper="-3.556" logspace="true"/>
+ <variable name="G2_delay" distribution="uniform" lower="-4.937" upper="-1.778" logspace="true"/>
+ <variable name="DNA_damage_rate" distribution="uniform" lower="-6.0" upper="-3.0" logspace="true"/>
+ 
+ <variable name="mitogenic_signal_accumulation_variability" distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="DNA_licensing_variability" distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="DNA_replication_variability" distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="G2_delay_variability" distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="DNA_damage_rate_variability" distribution="uniform" lower="0.0" upper="2.0"/>
+ 
+ <variable name="stdev" distribution="uniform" lower="-2.0" upper="0.0" logspace="true"/>
+ <variable name="Westendorp_entry_time" distribution="uniform" lower="0.0" upper="4.86" logspace="true"/>
+ <variable name="offset_westendorp_E2F1" distribution="uniform" lower="-1.0" upper="1.0"/>
+ <variable name="offset_westendorp_E2F7" distribution="uniform" lower="-1.0" upper="1.0"/>
+ <variable name="scale_westendorp_E2F1" distribution="uniform" lower="-0.3" upper="0.3" logspace="true"/>
+ <variable name="scale_westendorp_E2F7" distribution="uniform" lower="-0.3" upper="0.3" logspace="true"/>
+</variableset>

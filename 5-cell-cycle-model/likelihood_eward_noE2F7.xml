@@ -1,0 +1,23 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="Eward_Fig2"
+    model_file="model_noE2F7.xml"
+    num_cells="32"
+    max_cells="128"
+    entry_time="Eward_entry_time"
+    trailing_simulation_time="0.0"
+    data_file="data/Eward2004.nc"
+  >
+    <cell_variability parameter="mitogenic_signal_accumulation" type="multiplicative_log2" distribution="normal" range="mitogenic_signal_accumulation_variability"/>
+    <cell_variability parameter="DNA_licensing"   type="multiplicative_log2" distribution="normal" range="DNA_licensing_variability"/>
+    <cell_variability parameter="DNA_replication" type="multiplicative_log2" distribution="normal" range="DNA_replication_variability"/>
+    <cell_variability parameter="G2_delay"        type="multiplicative_log2" distribution="normal" range="G2_delay_variability"/>
+    <cell_variability parameter="DNA_damage_rate" type="multiplicative_log2" distribution="normal" range="DNA_damage_rate_variability"/>
+    <data species_name="CyclinE_mRNA+translating_CyclinE" data_name="cycEexp1" use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.4952556"/>
+    <data species_name="CyclinE_mRNA+translating_CyclinE" data_name="cycEexp2" use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.4952556"/>
+    <data species_name="CyclinA_mRNA+translating_CyclinA" data_name="cycAexp1" use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.3619126"/>
+    <data species_name="CyclinA_mRNA+translating_CyclinA" data_name="cycAexp2" use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.3619126"/>
+    <data species_name="CyclinB_mRNA+translating_CyclinB" data_name="cycBexp1" use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.3602701"/>
+    <data species_name="CyclinB_mRNA+translating_CyclinB" data_name="cycBexp2" use_population_average="true" stdev="stdev" stdev_multiplication_factor="0.3602701"/>
+  </experiment>
+</bcm_likelihood>

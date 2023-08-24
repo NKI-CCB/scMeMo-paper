@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variableset>
+ <variable name="mitogenic_signal_accumulation" distribution="uniform" lower="-5.782" upper="-1.778" logspace="true"/>
+ <variable name="DNA_licensing" distribution="uniform" lower="-4.937" upper="-1.778" logspace="true"/>
+ <variable name="DNA_replication" distribution="uniform" lower="-4.937" upper="-3.556" logspace="true"/>
+
+ <variable name="p27_transcription" distribution="uniform" lower="-5.782" upper="-1.778" logspace="true"/>
+ <variable name="CyclinE_transcription" distribution="uniform" lower="-5.782" upper="-1.778" logspace="true"/>
+ <variable name="CyclinE_degradation" distribution="uniform" lower="-5.782" upper="-1.778" logspace="true"/>
+ <variable name="active_CyclinE_degradation" distribution="uniform" lower="-4.937" upper="-1.778" logspace="true"/>
+ <variable name="CyclinA_transcription" distribution="uniform" lower="-4.937" upper="-1.778" logspace="true"/>
+ 
+ <variable name="mitogenic_signal_accumulation_variability" distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="DNA_licensing_variability" distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="DNA_replication_variability" distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="Barr2016_entry_time_variability" distribution="uniform" lower="0.0" upper="4.158" logspace="true"/> <!-- allow the S-phase entry to be at most 4 hours off -->
+
+ <variable name="stdev" distribution="uniform" lower="-2.0" upper="0.0" logspace="true"/>
+ <variable name="Barr2016_entry_time" distribution="uniform" lower="0.0" upper="4.635" logspace="true"/>
+</variableset>

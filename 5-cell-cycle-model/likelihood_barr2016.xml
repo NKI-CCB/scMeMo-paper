@@ -1,0 +1,19 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="Barr_fig1"
+    model_file="model.xml"
+    num_cells="32"
+    max_cells="96"
+    entry_time="Barr2016_entry_time"
+    trailing_simulation_time="0.0"
+    data_file="data/Barr2016.nc"
+  >
+    <cell_variability entry_time="entry_time"                           type="additive" distribution="normal" range="Barr2016_entry_time_variability"/>
+    <cell_variability parameter="mitogenic_signal_accumulation"         type="multiplicative_log2" distribution="normal" range="mitogenic_signal_accumulation_variability"/>
+    <cell_variability parameter="DNA_licensing"                         type="multiplicative_log2" distribution="normal" range="DNA_licensing_variability"/>
+    <cell_variability parameter="DNA_replication"                       type="multiplicative_log2" distribution="normal" range="DNA_replication_variability"/>
+    <data species_name="CyclinA+active_CyclinA_CDK2+active_CyclinA_CDK1"  data_name="CyclinA_gfp" stdev="stdev" stdev_multiplication_factor="1.493412"/>
+    <data species_name="active_p27+inactive_p27"                          data_name="p27_gfp"     stdev="stdev" stdev_multiplication_factor="0.6162338"/>
+    <data species_name="CyclinE+active_CyclinE_CDK2"                      data_name="CyclinE_gfp" stdev="stdev" stdev_multiplication_factor="0.515261"/>
+  </experiment>
+</bcm_likelihood>

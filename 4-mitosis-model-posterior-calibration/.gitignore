@@ -1,0 +1,5 @@
+/output_simdata_misspecified_with_mitosis_timings_t24_n100
+/figures
+/output_simdata_correctspecified_t24_n100
+/output_simdata_misspecified_t24_n100
+/logloss.rds

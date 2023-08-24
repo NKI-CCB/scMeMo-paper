@@ -1,0 +1,1 @@
+$BCM3_ROOT/bin/bcminf -c config_gmm.txt --output.folder=output_gmm -j 4 -k 4

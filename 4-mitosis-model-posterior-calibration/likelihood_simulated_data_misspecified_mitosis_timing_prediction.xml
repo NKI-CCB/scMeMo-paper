@@ -1,0 +1,17 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="CDK1_sensor_sim"
+    model_file="model_misspecified.xml"
+    num_cells="32"
+    max_cells="32"
+    entry_time="0.0"
+    trailing_simulation_time="0"
+    data_file="data/CDK1_sensor_simulated_data.nc"
+  >
+    <cell_variability parameter="FOXM1_synthesis"   type="multiplicative_log2" distribution="normal" range="FOXM1_synthesis_variability"/>
+    <cell_variability parameter="mitotic_entry"     type="multiplicative_log2" distribution="normal" range="mitotic_entry_variability"/>
+    <cell_variability parameter="spindle_assembly"  type="multiplicative_log2" distribution="normal" range="spindle_assembly_variability"/>
+    <data species_name="active_CDK1sensor" data_name="CDK1_sensor_sim" stdev="stdev" stdev_multiplication_factor="0.3655516"/>
+    <data type="duration" period="NEBD_to_AnaphaseOnset" data_name="NEBD_to_AO_duration" stdev="stdev" simulation_time="86400"/>
+  </experiment>
+</bcm_likelihood>

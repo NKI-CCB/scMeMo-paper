@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variableset>
+ <variable name="mitogenic_signal_accumulation" distribution="uniform" lower="-4.477121" upper="-1.778" logspace="true"/> <!-- slightly higher lower limit as we get convergence problems otherwise; fig1d shows average G1 is less than 500 minutes for low p21 levels, so mitogen signal accumulation should definitely be less than that -->
+ <variable name="DNA_licensing" distribution="uniform" lower="-4.937" upper="-1.778" logspace="true"/>
+ 
+ <variable name="p21_transcription" distribution="uniform" lower="-5.782" upper="-1.778" logspace="true"/>
+ <variable name="p21_degradation" distribution="uniform" lower="-5.782" upper="-1.778" logspace="true"/>
+ <variable name="DNA_damage_repair_rate" distribution="uniform" lower="-5.782" upper="-1.778" logspace="true"/>
+ 
+ <variable name="mitogenic_signal_accumulation_variability" distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="DNA_licensing_variability" distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="DNA_damage_variability" distribution="uniform" lower="0.0" upper="1.0"/>
+
+ <variable name="stdev" distribution="uniform" lower="-2.0" upper="0.0" logspace="true"/>
+</variableset>

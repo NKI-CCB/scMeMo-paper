@@ -1,0 +1,14 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="Akopyan_fig3d"
+    model_file="model.xml"
+    num_cells="8"
+    max_cells="8"
+    entry_time="0.0"
+    trailing_simulation_time="1e4"
+    data_file="data/Akopyan2014.nc"
+  >
+    <cell_variability parameter="FOXM1_synthesis"   type="multiplicative_log2" distribution="normal" range="FOXM1_synthesis_variability"/>
+		<data species_name="CyclinB+active_CyclinB_CDK1" data_name="cycB" use_population_average="true" synchronize="nuclear_envelope_breakdown" stdev="0.008" offset="offset_akopyan_cycB" scale="scale_akopyan_cycB"/>
+  </experiment>
+</bcm_likelihood>

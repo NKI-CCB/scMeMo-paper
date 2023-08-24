@@ -1,0 +1,16 @@
+<bcm_likelihood type="cell_population">
+	<experiment
+    name="Barr_fig1f"
+    model_file="model.xml"
+    num_cells="32"
+    max_cells="96"
+    entry_time="0"
+    trailing_simulation_time="0.0"
+    data_file="data/Barr2017.nc"
+  >
+    <cell_variability parameter="mitogenic_signal_accumulation" type="multiplicative_log2" distribution="normal" range="mitogenic_signal_accumulation_variability"/>
+    <cell_variability parameter="DNA_licensing" type="multiplicative_log2" distribution="normal" range="DNA_licensing_variability"/>
+    <cell_variability species="replication_induced_DNA_damage" type="additive" distribution="half_normal" range="DNA_damage_variability" only_initial_cells="true"/>
+    <data species_name="p21"  data_name="p21_gfp" stdev="stdev" stdev_multiplication_factor="0.3442741"/>
+  </experiment>
+</bcm_likelihood>

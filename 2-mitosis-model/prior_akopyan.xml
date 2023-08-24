@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variableset>
+ <variable name="FOXM1_synthesis"                       distribution="uniform" lower="-8" upper="-1.78" logspace="true"/>
+ <variable name="mitotic_entry"                         distribution="uniform" lower="-4.936" upper="-1.78" logspace="true"/>
+ <variable name="spindle_assembly"                      distribution="uniform" lower="-4.936" upper="0.0" logspace="true"/>
+ 
+ <variable name="CyclinB_synthesis_by_FOXM1"            distribution="uniform" lower="-4.936" upper="-1.778" logspace="true"/>
+ <variable name="CyclinB_deactivation"                  distribution="uniform" lower="-4.936" upper="0.0" logspace="true"/>
+ <variable name="CyclinB_activation"                    distribution="uniform" lower="-4.936" upper="0.0" logspace="true"/>
+ <variable name="CyclinB_activation_by_CDC25C"          distribution="uniform" lower="-4.936" upper="0.0" logspace="true"/>
+ <variable name="CyclinB_degradation_by_CDC20"          distribution="uniform" lower="-4.936" upper="0.0" logspace="true"/>
+ 
+ <variable name="CDC25C_phosphorylation_by_CyclinB"     distribution="uniform" lower="-4.936" upper="0.0" logspace="true"/>
+ <variable name="CDC25C_dephosphorylation"              distribution="uniform" lower="-4.936" upper="0.0" logspace="true"/>
+ 
+ <variable name="FOXM1_synthesis_variability"           distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="mitotic_entry_variability"             distribution="uniform" lower="0.0" upper="2.0"/>
+ <variable name="spindle_assembly_variability"          distribution="uniform" lower="0.0" upper="2.0"/>
+ 
+ <variable name="offset_akopyan_cycB"             distribution="uniform" lower="-1.0" upper="1.0"/>
+ <variable name="scale_akopyan_cycB"              distribution="uniform" lower="-0.3" upper="0.3" logspace="true"/>
+ <variable name="stdev"                           distribution="uniform" lower="-2.0" upper="0.0" logspace="true"/>
+</variableset>
