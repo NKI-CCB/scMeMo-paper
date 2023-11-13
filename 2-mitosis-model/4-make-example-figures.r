@@ -22,9 +22,9 @@ linewidth <- 1.0
 
 dir.create("figures", showWarnings = F)
 
-pdf("figures/simulations.pdf", width=160/(25.4*0.75), height=50/(25.4*0.75))
+pdf("figures/simulations.pdf", width=160/(25.4*0.75), height=40/(25.4*0.75))
 
-par(mfcol=c(1,3))
+par(mfcol=c(1,4))
 par(mar=c(5,6,4,1))
 
 sample <- model$posterior$samples[,temperature_ix,MAP_sample_ix]
@@ -37,16 +37,16 @@ traj <- bcm3.cellpop.get.simulated.trajectories(model, model$likelihood$experime
 use_time_ix <- which(!is.na(traj$cells[active_cyclinB_ix,,1]))
 t <- (traj$time[use_time_ix] - traj$time[use_time_ix[1]])/60
 plot(t, traj$cells[active_cyclinB_ix,use_time_ix,1], type='l', col=colors[1], lwd=linewidth, ylim=c(-0.1,1.1), xlab='Time (minutes)', ylab='Concentration\n(arbitrary units)', xaxt='n', yaxt='n')
-axis(1, at=c(0,100,200,300), tck=-0.02)
-rug(c(50,150,250), ticksize=-0.02, side=1)
-axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.02)
+axis(1, at=c(0,100,200,300), tck=-0.03)
+rug(c(50,150,250,350), ticksize=-0.02, side=1)
+axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.03)
 rug(c(0.2,0.4,0.6,0.8), ticksize=-0.02, side=2)
 lines(t, traj$cells[assembled_spindle_ix,use_time_ix,1], type='l', col=colors[2], lwd=linewidth)
 
 plot(t, traj$cells[active_cyclinB_ix,use_time_ix,1], type='l', col=colors[1], lwd=linewidth, ylim=c(-0.1,1.1), xlab='Time (minutes)', ylab='Concentration\n(arbitrary units)', xaxt='n', yaxt='n')
-axis(1, at=c(0,100,200,300), tck=-0.02)
-rug(c(50,150,250), ticksize=-0.02, side=1)
-axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.02)
+axis(1, at=c(0,100,200,300), tck=-0.03)
+rug(c(50,150,250,350), ticksize=-0.02, side=1)
+axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.03)
 rug(c(0.2,0.4,0.6,0.8), ticksize=-0.02, side=2)
 for (i in 1:num_cells) {
   lines(t, traj$cells[active_cyclinB_ix,use_time_ix,i], type='l', col=colors[1], lwd=linewidth)
@@ -61,26 +61,37 @@ sample["mitotic_entry_variability"] <- 1.0
 traj <- bcm3.cellpop.get.simulated.trajectories(model, model$likelihood$experiments[[1]]$name, sample)
 
 plot(t, traj$cells[active_cyclinB_ix,use_time_ix,1], type='l', col=colors[1], lwd=linewidth, ylim=c(-0.1,1.1), xlab='Time (minutes)', ylab='Concentration\n(arbitrary units)', xaxt='n', yaxt='n')
-axis(1, at=c(0,100,200,300), tck=-0.02)
-rug(c(50,150,250), ticksize=-0.02, side=1)
-axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.02)
+axis(1, at=c(0,100,200,300), tck=-0.03)
+rug(c(50,150,250,350), ticksize=-0.02, side=1)
+axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.03)
 rug(c(0.2,0.4,0.6,0.8), ticksize=-0.02, side=2)
 for (i in 1:num_cells) {
   lines(t, traj$cells[active_cyclinB_ix,use_time_ix,i], type='l', col=colors[1], lwd=linewidth)
   lines(t, traj$cells[assembled_spindle_ix,use_time_ix,i], type='l', col=colors[2], lwd=linewidth)
 }
 
+pop_avg_cycB <- apply(traj$cells[active_cyclinB_ix,use_time_ix,], 1, mean)
+pop_avg_spindle <- apply(traj$cells[assembled_spindle_ix,use_time_ix,], 1, mean)
+
+plot(t, pop_avg, type='l', col=colors[1], lwd=linewidth, ylim=c(-0.1,1.1), xlab='Time (minutes)', ylab='Concentration\n(arbitrary units)', xaxt='n', yaxt='n')
+lines(t, pop_avg_spindle, type='l', col=colors[2], lwd=linewidth)
+axis(1, at=c(0,100,200,300), tck=-0.03)
+rug(c(50,150,250,350), ticksize=-0.02, side=1)
+axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.03)
+rug(c(0.2,0.4,0.6,0.8), ticksize=-0.02, side=2)
+
 res <- dev.off()
 
 
 
-pdf("figures/simulations_uncertainty.pdf", width=160/(25.4*0.75), height=50/(25.4*0.75))
+pdf("figures/simulations_uncertainty.pdf", width=160/(25.4*0.75), height=40/(25.4*0.75))
 
-par(mfcol=c(1,3))
+par(mfcol=c(1,4))
 par(mar=c(5,6,4,1))
 
 species <- list()
 species_all <- list()
+species_mean <- list()
 
 pb <- txtProgressBar(max=length(ppd_sample_ix), style=3)
 for (j in 1:length(ppd_sample_ix)) {
@@ -102,6 +113,9 @@ for (j in 1:length(ppd_sample_ix)) {
       species_all[[2]] <- list()
       species_all[[2]][[k]] <- traj$cells[assembled_spindle_ix,,k]
     }
+    
+    species_mean[[1]] <- rowMeans(traj$cells[active_cyclinB_ix,,], na.rm=T)
+    species_mean[[2]] <- rowMeans(traj$cells[assembled_spindle_ix,,], na.rm=T)
   } else {
     species[[1]] <- rbind(species[[1]], traj$cells[active_cyclinB_ix,,1])
     species[[2]] <- rbind(species[[2]], traj$cells[assembled_spindle_ix,,1])
@@ -110,15 +124,18 @@ for (j in 1:length(ppd_sample_ix)) {
       species_all[[1]][[k]] <- rbind(species_all[[1]][[k]], traj$cells[active_cyclinB_ix,,k])
       species_all[[2]][[k]] <- rbind(species_all[[2]][[k]], traj$cells[assembled_spindle_ix,,k])
     }
+    
+    species_mean[[1]] <- rbind(species_mean[[1]], rowMeans(traj$cells[active_cyclinB_ix,,], na.rm=T))
+    species_mean[[2]] <- rbind(species_mean[[2]], rowMeans(traj$cells[assembled_spindle_ix,,], na.rm=T))
   }
 }
 
 use_time_ix <- which(!is.na(traj$cells[active_cyclinB_ix,,1]))
 t <- (traj$time[use_time_ix] - traj$time[use_time_ix[1]]) / 60
 plot(t, traj$cells[active_cyclinB_ix,use_time_ix,1], type='n', ylim=c(-0.1,1.1), xlab='Time (minutes)', ylab='Concentration\n(arbitrary units)', xaxt='n', yaxt='n')
-axis(1, at=c(0,100,200,300), tck=-0.02)
-rug(c(50,150,250), ticksize=-0.02, side=1)
-axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.02)
+axis(1, at=c(0,100,200,300), tck=-0.03)
+rug(c(50,150,250,350), ticksize=-0.02, side=1)
+axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.03)
 rug(c(0.2,0.4,0.6,0.8), ticksize=-0.02, side=2)
 
 lower <- apply(species[[1]], 2, quantile, probs=0.05, na.rm=T)
@@ -137,9 +154,9 @@ polygon(c(t, rev(t)), c(lower[use_time_ix], rev(upper[use_time_ix])), border=F, 
 
 
 plot(t, traj$cells[1,use_time_ix,1], type='n', col=colors[1], lwd=linewidth, ylim=c(-0.1,1.1), xlab='Time (minutes)', ylab='Concentration\n(arbitrary units)', xaxt='n', yaxt='n')
-axis(1, at=c(0,100,200,300), tck=-0.02)
-rug(c(50,150,250), ticksize=-0.02, side=1)
-axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.02)
+axis(1, at=c(0,100,200,300), tck=-0.03)
+rug(c(50,150,250,350), ticksize=-0.02, side=1)
+axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.03)
 rug(c(0.2,0.4,0.6,0.8), ticksize=-0.02, side=2)
 for (k in 1:num_cells) {
   lower <- apply(species_all[[1]][[k]], 2, quantile, probs=0.05, na.rm=T)
@@ -160,6 +177,7 @@ for (k in 1:num_cells) {
 
 species <- list()
 species_all <- list()
+species_mean <- list()
 
 pb <- txtProgressBar(max=length(ppd_sample_ix), style=3)
 for (j in 1:length(ppd_sample_ix)) {
@@ -181,6 +199,9 @@ for (j in 1:length(ppd_sample_ix)) {
       species_all[[2]] <- list()
       species_all[[2]][[k]] <- traj$cells[assembled_spindle_ix,,k]
     }
+    
+    species_mean[[1]] <- rowMeans(traj$cells[active_cyclinB_ix,,], na.rm=T)
+    species_mean[[2]] <- rowMeans(traj$cells[assembled_spindle_ix,,], na.rm=T)
   } else {
     species[[1]] <- rbind(species[[1]], traj$cells[active_cyclinB_ix,,1])
     species[[2]] <- rbind(species[[2]], traj$cells[assembled_spindle_ix,,1])
@@ -189,13 +210,16 @@ for (j in 1:length(ppd_sample_ix)) {
       species_all[[1]][[k]] <- rbind(species_all[[1]][[k]], traj$cells[active_cyclinB_ix,,k])
       species_all[[2]][[k]] <- rbind(species_all[[2]][[k]], traj$cells[assembled_spindle_ix,,k])
     }
+    
+    species_mean[[1]] <- rbind(species_mean[[1]], rowMeans(traj$cells[active_cyclinB_ix,,], na.rm=T))
+    species_mean[[2]] <- rbind(species_mean[[2]], rowMeans(traj$cells[assembled_spindle_ix,,], na.rm=T))
   }
 }
 
 plot(t, traj$cells[1,use_time_ix,1], type='n', col=colors[1], lwd=linewidth, ylim=c(-0.1,1.1), xlab='Time (minutes)', ylab='Concentration\n(arbitrary units)', xaxt='n', yaxt='n')
-axis(1, at=c(0,100,200,300), tck=-0.02)
-rug(c(50,150,250), ticksize=-0.02, side=1)
-axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.02)
+axis(1, at=c(0,100,200,300), tck=-0.03)
+rug(c(50,150,250,350), ticksize=-0.02, side=1)
+axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.03)
 rug(c(0.2,0.4,0.6,0.8), ticksize=-0.02, side=2)
 for (k in 1:num_cells) {
   lower <- apply(species_all[[1]][[k]], 2, quantile, probs=0.05, na.rm=T)
@@ -214,6 +238,28 @@ for (k in 1:num_cells) {
   coloralpha <- rgb(col2rgb(colors[2])[1,1],col2rgb(colors[2])[2,1],col2rgb(colors[2])[3,1], 0.1*255, max=255)
   polygon(c(t, rev(t)), c(lower[use_time_ix], rev(upper[use_time_ix])), border=F, col=coloralpha)
 }
+
+
+
+plot(t, traj$cells[active_cyclinB_ix,use_time_ix,1], type='n', ylim=c(-0.1,1.1), xlab='Time (minutes)', ylab='Concentration\n(arbitrary units)', xaxt='n', yaxt='n')
+axis(1, at=c(0,100,200,300), tck=-0.03)
+rug(c(50,150,250,350), ticksize=-0.02, side=1)
+axis(2, at=c(0,1), labels=format(c(0.0, 1.0), nsmall=1), tck=-0.03)
+rug(c(0.2,0.4,0.6,0.8), ticksize=-0.02, side=2)
+
+lower <- apply(species_mean[[1]], 2, quantile, probs=0.05, na.rm=T)
+upper <- apply(species_mean[[1]], 2, quantile, probs=0.95, na.rm=T)
+lines(t, lower[use_time_ix], col=colors[1], lwd=0.5)
+lines(t, upper[use_time_ix], col=colors[1], lwd=0.5)
+coloralpha <- rgb(col2rgb(colors[1])[1,1],col2rgb(colors[1])[2,1],col2rgb(colors[1])[3,1], 0.1*255, max=255)
+polygon(c(t, rev(t)), c(lower[use_time_ix], rev(upper[use_time_ix])), border=F, col=coloralpha)
+
+lower <- apply(species_mean[[2]], 2, quantile, probs=0.05, na.rm=T)
+upper <- apply(species_mean[[2]], 2, quantile, probs=0.95, na.rm=T)
+lines(t, lower[use_time_ix], col=colors[2], lwd=0.5)
+lines(t, upper[use_time_ix], col=colors[2], lwd=0.5)
+coloralpha <- rgb(col2rgb(colors[2])[1,1],col2rgb(colors[2])[2,1],col2rgb(colors[2])[3,1], 0.1*255, max=255)
+polygon(c(t, rev(t)), c(lower[use_time_ix], rev(upper[use_time_ix])), border=F, col=coloralpha)
 
 res <- dev.off()
 

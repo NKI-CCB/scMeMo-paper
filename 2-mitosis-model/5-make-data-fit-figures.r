@@ -84,3 +84,18 @@ plot_variable_distribution(akopyan, var_name="FOXM1_synthesis_variability")
 plot_variable_distribution(akopyan, var_name="mitotic_entry", ylim=c(0,1))
 plot_variable_distribution(akopyan, var_name="mitotic_entry_variability", ylim=c(0,1))
 res <- dev.off()
+
+pdf("figures/posterior_densities_gavetpines_all.pdf", width=240/25.4, height=120/25.4)
+par(mfrow=c(3,6))
+par(cex=0.5, mgp=c(2.0,0.8,0), mar=c(3,3,3,1))
+for (i in 1:gavetpines$nvar) {
+  plot_variable_distribution(gavetpines, var_ix=i)
+}
+res <- dev.off()
+pdf("figures/posterior_densities_akopyan_all.pdf", width=240/25.4, height=120/25.4)
+par(mfrow=c(3,6))
+par(cex=0.5, mgp=c(2.0,0.8,0), mar=c(3,3,3,1))
+for (i in 1:akopyan$nvar) {
+  plot_variable_distribution(akopyan, var_ix=i)
+}
+res <- dev.off()

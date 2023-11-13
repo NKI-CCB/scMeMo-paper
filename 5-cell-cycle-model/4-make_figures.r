@@ -163,14 +163,17 @@ eward_noE2F7_title1 <- paste("R2=", format(mean(pps[["eward_noE2F7"]]$Rsq[[1]]),
 eward_noE2F7_title2 <- paste("R2=", format(mean(pps[["eward_noE2F7"]]$Rsq[[2]]), digits=2), " [", format(quantile(pps[["eward_noE2F7"]]$Rsq[[2]], 0.05), digits=2), "-", format(quantile(pps[["eward_noE2F7"]]$Rsq[[2]], 0.95), digits=2), "]", sep="")
 eward_noE2F7_title3 <- paste("R2=", format(mean(pps[["eward_noE2F7"]]$Rsq[[3]]), digits=2), " [", format(quantile(pps[["eward_noE2F7"]]$Rsq[[3]], 0.05), digits=2), "-", format(quantile(pps[["eward_noE2F7"]]$Rsq[[3]], 0.95), digits=2), "]", sep="")
 
-pdf("figures/posterior_predictive_eward_model_comparison.pdf", width=210/25.4, height=140/25.4)
-par(mfcol=c(2,3))
+pdf("figures/posterior_predictive_eward_model_comparison.pdf", width=210/25.4, height=210/25.4)
+par(mfcol=c(3,3))
 posterior_predictive_plot_replicate_data(models[["eward"]], pps[["eward"]], 1, 1, 1, main=eward_title1, ppd_point_symbol=20, ppd_color = "#00beff")
 posterior_predictive_plot_replicate_data(models[["eward"]], pps[["eward"]], 1, 3, 1, main=eward_title2, ppd_point_symbol=20, ppd_color = "#00beff")
+posterior_predictive_plot_replicate_data(models[["eward"]], pps[["eward"]], 1, 5, 1, main=eward_title3, ppd_point_symbol=20, ppd_color = "#00beff")
 posterior_predictive_plot_replicate_data(models[["eward_noCycArepression"]], pps[["eward_noCycArepression"]], 1, 1, 1, main=eward_noCycArepression_title1, ppd_point_symbol=20, ppd_color = "#00beff")
 posterior_predictive_plot_replicate_data(models[["eward_noCycArepression"]], pps[["eward_noCycArepression"]], 1, 3, 1, main=eward_noCycArepression_title2, ppd_point_symbol=20, ppd_color = "#00beff")
+posterior_predictive_plot_replicate_data(models[["eward_noCycArepression"]], pps[["eward_noCycArepression"]], 1, 5, 1, main=eward_noCycArepression_title3, ppd_point_symbol=20, ppd_color = "#00beff")
 posterior_predictive_plot_replicate_data(models[["eward_noE2F7"]], pps[["eward_noE2F7"]], 1, 1, 1, main=eward_noE2F7_title1, ppd_point_symbol=20, ppd_color = "#00beff")
 posterior_predictive_plot_replicate_data(models[["eward_noE2F7"]], pps[["eward_noE2F7"]], 1, 3, 1, main=eward_noE2F7_title2, ppd_point_symbol=20, ppd_color = "#00beff")
+posterior_predictive_plot_replicate_data(models[["eward_noE2F7"]], pps[["eward_noE2F7"]], 1, 5, 1, main=eward_noE2F7_title3, ppd_point_symbol=20, ppd_color = "#00beff")
 res <- dev.off()
 
 temperature_ix <- dim(models[["eward"]]$posterior$samples)[2]
@@ -257,3 +260,13 @@ png("figures/trajectory_heatmaps_eward_noE2F7_cycB_popavg.png", width=710, heigh
 trajectory_heatmap(models[["eward_noE2F7"]], c("CyclinB_mRNA"), draw_whole_population = F, draw_population_average = T, show_heatmap_legend = F)
 dev.off()
 models[["eward_noE2F7"]] <- bcm3.release.cpp(models[["eward_noE2F7"]])
+
+for (j in 1:length(models)) {
+  pdf(paste("figures/posterior_densities_", names(models)[j], "_all.pdf", sep=""), width=200/25.4, height=160/25.4)
+  par(mfrow=c(4,5))
+  par(cex=0.5, mgp=c(2.0,0.8,0), mar=c(3,3,3,1))
+  for (i in 1:models[[j]]$nvar) {
+    plot_variable_distribution(models[[j]], var_ix=i)
+  }
+  res <- dev.off()
+}

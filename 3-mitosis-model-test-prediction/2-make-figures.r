@@ -44,8 +44,8 @@ lines(1:length(model$posterior$temperatures), Rlogloss_log, lwd=2, col="#4053d3"
 points(calibrated_temperature_ix, Rlogloss_log[calibrated_temperature_ix], pch=8, col="#b51d14", lwd=2, cex=1.5)
 res <- dev.off()
 
-pdf("figures/predictions_from_gavetpines.pdf", width=120/25.4, height=250/25.4)
-par(mfrow=c(4,1))
+pdf("figures/predictions_from_gavetpines.pdf", width=100/25.4, height=120/25.4)
+par(mfrow=c(2,1))
 par(cex=0.5, mgp=c(2.0,0.8,0))
 for (temperature_ix in c(calibrated_temperature_ix, dim(model$posterior$samples)[2])) {
   tmp <- matrix(unlist(pps[[temperature_ix]]$merged[[1]]), nrow=length(pps[[temperature_ix]]$ppd_sample_ix))
@@ -54,17 +54,15 @@ for (temperature_ix in c(calibrated_temperature_ix, dim(model$posterior$samples)
   mean <- apply(tmp, 2, mean, na.rm=T)
   upper <- apply(tmp, 2, quantile, probs=0.95, na.rm=T)
   
-  for (maxy in c(150, 360)) {
-    plot(0, type='n', xlim=c(0,200), ylim=c(0, maxy), xlab="", ylab="Time (minutes)", xaxt='n')
-    ordering <- order(mean)
-    for (i in 1:ncol(tmp)) {
-      lines(c(i,i), c(lower[ordering[i]], upper[ordering[i]])/60)
-    }
-    abline(h=min(lower)/60, lty=2, col='grey')
-    for (j in 1:length(timings)) {
-      xinc <- 36 / length(timings[[j]])
-      points(40 + (j-1)*40 + 1:length(timings[[j]]) * xinc, sort(timings[[j]])/60, pch=4)
-    }
+  plot(0, type='n', xlim=c(2,180), ylim=c(0, 150), xlab="", ylab="Time (minutes)", xaxt='n')
+  ordering <- order(mean)
+  for (i in 1:ncol(tmp)) {
+    lines(c(i,i), c(lower[ordering[i]], upper[ordering[i]])/60)
+  }
+  abline(h=min(lower)/60, lty=2, col='grey')
+  for (j in 1:length(timings)) {
+    xinc <- 32 / length(timings[[j]])
+    points(36 + (j-1)*36 + 1:length(timings[[j]]) * xinc, sort(timings[[j]])/60, pch=4)
   }
 }
 res <- dev.off()
